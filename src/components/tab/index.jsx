@@ -1,8 +1,7 @@
-export const Tab = ({ restaurant, onClick, activeRestaurantId }) => {
-  const disabled = restaurant.id === activeRestaurantId;
+export const Tab = ({ title, onClick, isActive }) => {
   return (
-    <button disabled={disabled} onClick={onClick}>
-      {restaurant.name}
+    <button disabled={isActive} onClick={onClick}>
+      {title}
     </button>
   );
 };

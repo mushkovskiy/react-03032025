@@ -1,19 +1,16 @@
 import { Tab } from "../tab";
 
-export const TabList = ({
-  restaurants,
-  setActiveRestaurantId,
-  activeRestaurantId,
-}) => {
+export const TabList = ({ items, activeItemId, setActiveItemId }) => {
   return (
     <ul style={{ display: "flex", gap: "10px" }}>
-      {restaurants.map((restaurant) => (
-        <Tab
-          restaurant={restaurant}
-          key={restaurant.id}
-          activeRestaurantId={activeRestaurantId}
-          onClick={() => setActiveRestaurantId(restaurant.id)}
-        />
+      {items.map(({ name, id }) => (
+        <li key={id}>
+          <Tab
+            title={name}
+            onClick={() => setActiveItemId(id)}
+            isActive={id === activeItemId}
+          />
+        </li>
       ))}
     </ul>
   );

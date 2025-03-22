@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useScrollProgress = (ref) => {
   const [scrolledDistancePersentage, setScrolledDistancePercentage] =
     useState(0);
 
-  const getScrollPercentage = () => {
+  const getScrollPercentage = useCallback(() => {
     const containerBottom = ref.current.getBoundingClientRect().bottom;
 
     const viewportHeight = window.innerHeight;
@@ -19,7 +19,7 @@ export const useScrollProgress = (ref) => {
 
     scrollProgress = Math.min(Math.max(scrollProgress, 0), 100);
     setScrolledDistancePercentage(scrollProgress);
-  };
+  }, [ref]);
 
   useEffect(() => {
     window.addEventListener("scroll", getScrollPercentage);

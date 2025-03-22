@@ -1,4 +1,8 @@
-export const ProgressBar = ({ progress }) => {
+import { useScrollProgress } from "../../hooks/use-scroll-progress";
+
+export const ProgressBar = ({ ref }) => {
+  const { scrolledDistancePersentage } = useScrollProgress(ref);
+
   return (
     <div
       style={{
@@ -7,8 +11,8 @@ export const ProgressBar = ({ progress }) => {
         position: "fixed",
         height: "4px",
         background: "red",
-        width: `${progress}%`,
+        width: `${scrolledDistancePersentage}%`,
       }}
-    ></div>
+    />
   );
 };

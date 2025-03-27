@@ -2,9 +2,9 @@ import { use } from "react";
 import { Button } from "../button";
 import { ThemeContext } from "../../providers/theme";
 
-export const Tab = ({ title, onClick, isActive }) => {
+export const Tab = ({ title, onClick, disabled }) => {
   return (
-    <Button disabled={isActive} onClick={onClick}>
+    <Button disabled={disabled} onClick={onClick}>
       {title}
     </Button>
   );

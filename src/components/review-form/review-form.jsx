@@ -1,5 +1,6 @@
 import { Counter } from "../counter/counter";
 import { useForm } from "../../hooks/use-form";
+import { Button } from "../button";
 
 export const ReviewForm = () => {
   const {
@@ -45,7 +46,7 @@ export const ReviewForm = () => {
         onIncrement={setIncrementRating}
         onDecrement={setDecrementRating}
       />
-      <button onClick={clearForm}>Clear</button>
+      <Button onClick={clearForm}>Clear</Button>
     </div>
   );
 };

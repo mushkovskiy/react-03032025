@@ -1,9 +1,13 @@
+import { Header } from "../header";
+import styles from "./index.module.css";
 export const Layout = ({ children }) => {
   return (
-    <div>
-      <div>Header</div>
-      {children}
-      <div>Footer</div>
+    <div className={styles.root}>
+      <div className={styles.header}>
+        <Header />
+      </div>
+      <div className={styles.main}>{children}</div>
+      <div className={styles.footer}>Footer</div>
     </div>
   );
 };

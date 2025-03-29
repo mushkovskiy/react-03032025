@@ -1,7 +1,11 @@
-export const Tab = ({ title, onClick, isActive }) => {
+import { use } from "react";
+import { Button } from "../button";
+import { ThemeContext } from "../../providers/theme";
+
+export const Tab = ({ title, onClick, disabled }) => {
   return (
-    <button disabled={isActive} onClick={onClick}>
+    <Button disabled={disabled} onClick={onClick}>
       {title}
-    </button>
+    </Button>
   );
 };

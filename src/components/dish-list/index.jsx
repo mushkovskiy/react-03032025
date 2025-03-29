@@ -1,16 +1,16 @@
 import { Dish } from "../dish";
-
-export const DishList = ({ menu }) => {
+import styles from "./index.module.css";
+export const DishList = ({ menuIds }) => {
   return (
-    <>
+    <div className={styles.root}>
       <h3>Dishes</h3>
-      <ul>
-        {menu.map((dish) => (
-          <li key={dish.id}>
-            <Dish dish={dish} />
+      <ul className={styles.list}>
+        {menuIds.map((id) => (
+          <li key={id}>
+            <Dish dishId={id} />
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };

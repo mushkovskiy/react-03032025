@@ -1,0 +1,13 @@
+.root {
+  font-size: 14px;
+}
+
+.root.light {
+  color: black;
+  background-color: cadetblue;
+}
+
+.root.dark {
+  color: white;
+  background-color: gray;
+}

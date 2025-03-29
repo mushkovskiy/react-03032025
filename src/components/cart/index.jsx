@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../store/entites/cart/slice";
+import { CartMenuItem } from "../cart-menu-item";
 
 export const Cart = () => {
   const items = useSelector(selectCartItems);
@@ -12,7 +13,7 @@ export const Cart = () => {
     <ul>
       {items.map(({ id, amount }) => (
         <li key={id}>
-          {id} - {amount}
+          <CartMenuItem menuItemId={id} amount={amount} />
         </li>
       ))}
     </ul>

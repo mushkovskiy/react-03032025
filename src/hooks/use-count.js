@@ -8,7 +8,6 @@ import {
 
 export const useCount = (id) => {
   const dispatch = useDispatch();
-  useCallback(() => {}, []);
   const count = useSelector((state) => selectAmountByDishId(state, id)) || 0;
   const increment = useCallback(() => {
     dispatch(addToCart(id));

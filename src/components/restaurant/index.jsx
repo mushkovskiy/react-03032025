@@ -3,13 +3,11 @@ import { selectRestaurantById } from "../../store/entites/restaurants/slice";
 import { ReviewForm } from "../review-form/review-form";
 import styles from "./index.module.css";
 import { Outlet, useNavigate, useParams } from "react-router";
-import { useEffect } from "react";
 import { Tab } from "../tab";
 export const Restaurant = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const restaurant = useSelector((state) => selectRestaurantById(state, id));
-  useEffect(() => navigate("menu"), [id]);
 
   const handleMenuTabClick = () => navigate("menu");
   const handleReviewsTabClick = () => navigate("reviews");

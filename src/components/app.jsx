@@ -11,7 +11,7 @@ import { RestaurantsPage } from "../pages/restaurants-page";
 import { Restaurant } from "./restaurant";
 import { MenuList } from "./menu-list";
 import { ReviewList } from "./review-list";
-import { Dish } from "./dish";
+import { DishPage } from "../pages/dish-page";
 export const App = () => {
   return (
     <Provider store={store}>
@@ -27,8 +27,8 @@ export const App = () => {
                     <Route path="menu" element={<MenuList />} />
                     <Route path="reviews" element={<ReviewList />} />
                   </Route>
-                  <Route path="dish/:id" element={<Dish />} />
                 </Route>
+                <Route path="dish/:id" element={<DishPage />} />
               </Route>
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

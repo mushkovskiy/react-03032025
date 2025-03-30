@@ -5,5 +5,5 @@ import { Link } from "react-router";
 export const MenuItem = ({ id }) => {
   const { name } = useSelector((state) => selectDishById(state, id));
 
-  return <Link to={`/restaurants/dish/${id}`}>{name}</Link>;
+  return <Link to={`/dish/${id}`}>{name}</Link>;
 };

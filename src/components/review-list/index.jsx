@@ -1,16 +1,28 @@
 import { useSelector } from "react-redux";
 import { Review } from "../review";
 import { useParams } from "react-router";
-import { selectRestaurantById } from "../../store/entites/restaurants/slice";
+import { getReviewsByRestaurantId } from "../../store/entites/reviews/async-thunk/get-reviews-by-restaurant-id";
+import { useRequest } from "../../hooks/use-request";
+import { selectReviewsIds } from "../../store/entites/reviews/slice";
 
 export const ReviewList = () => {
   const { id } = useParams();
-  const { reviews } = useSelector((state) => selectRestaurantById(state, id));
+  const requestStatus = useRequest(getReviewsByRestaurantId, id);
+
+  const reviewIds = useSelector((state) => selectReviewsIds(state, id));
+
+  if (requestStatus === "pending" || requestStatus === "idle") {
+    return "loading...";
+  }
+
+  if (requestStatus === "rejected") {
+    return "error";
+  }
   return (
     <div>
       <h3>Reviews</h3>
       <ul>
-        {reviews.map((id) => (
+        {reviewIds.map((id) => (
           <li key={id}>
             <Review reviewId={id} />
           </li>

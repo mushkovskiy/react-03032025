@@ -1,13 +1,28 @@
 import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../store/entites/restaurants/slice";
 import { ReviewForm } from "../review-form/review-form";
 import styles from "./index.module.css";
 import { Link, Outlet, useParams } from "react-router";
+import { getRestaurantById } from "../../store/entites/restaurant/async-thunk/get-restaurant-by-id";
+import { useRequest } from "../../hooks/use-request";
+import { selectRestaurantByRestautantId } from "../../store/entites/restaurant/slice";
 
 export const Restaurant = () => {
   const { id } = useParams();
-  const restaurant = useSelector((state) => selectRestaurantById(state, id));
+  const requestStatus = useRequest(getRestaurantById, id);
+  const restaurant = useSelector((state) =>
+    selectRestaurantByRestautantId(state, id)
+  );
+  if (requestStatus === "pending") {
+    return "loadingInRestaurant...";
+  }
 
+  if (requestStatus === "rejected") {
+    return "error";
+  }
+
+  if (!restaurant) {
+    return "restaurant not found";
+  }
   return (
     <div className={styles.root}>
       <h1>{restaurant.name}</h1>

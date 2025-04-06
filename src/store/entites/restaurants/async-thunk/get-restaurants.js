@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { selectRestaurantsIds } from "../slice";
 
 export const getRestaurants = createAsyncThunk(
   "restaurants/getRestaurants",
@@ -16,11 +17,7 @@ export const getRestaurants = createAsyncThunk(
   {
     condition: (_, { getState }) => {
       const state = getState();
-      return !(
-        state.restaurants &&
-        state.restaurants.ids &&
-        state.restaurants.ids.length > 0
-      );
+      return !(selectRestaurantsIds(state).length > 0);
     },
   }
 );

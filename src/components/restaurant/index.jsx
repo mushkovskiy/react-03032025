@@ -1,13 +1,14 @@
+"use client";
 import { useSelector } from "react-redux";
 import { ReviewForm } from "../review-form/review-form";
 import styles from "./index.module.css";
-import { Link, Outlet, useParams } from "react-router";
-import { getRestaurantById } from "../../store/entites/restaurant/async-thunk/get-restaurant-by-id";
+
 import { useRequest } from "../../hooks/use-request";
 import { selectRestaurantByRestautantId } from "../../store/entites/restaurant/slice";
+import { getRestaurantById } from "../../store/entites/restaurant/async-thunk/get-restaurant-by-id";
+import Link from "next/link";
 
-export const Restaurant = () => {
-  const { id } = useParams();
+export const Restaurant = ({ id }) => {
   const requestStatus = useRequest(getRestaurantById, id);
   const restaurant = useSelector((state) =>
     selectRestaurantByRestautantId(state, id)
@@ -27,10 +28,9 @@ export const Restaurant = () => {
     <div className={styles.root}>
       <h1>{restaurant.name}</h1>
       <div style={{ display: "flex", gap: "5px" }}>
-        <Link to="menu">Menu</Link>
-        <Link to="reviews">Reviews</Link>
+        <Link href={`/restaurants/${id}/menu`}>Menu</Link>
+        <Link href={`/restaurants/${id}/reviews`}>Reviews</Link>
       </div>
-      <Outlet />
       <ReviewForm />
     </div>
   );

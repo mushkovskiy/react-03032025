@@ -1,18 +1,18 @@
 import { useSelector } from "react-redux";
 import { Tab } from "../tab";
 import { selectRestaurantById } from "../../store/entites/restaurants/slice";
-import { useNavigate, useParams } from "react-router";
+import { useRouter, usePathname } from "next/navigation";
 
 export const RestaurantTabContainer = ({ restautantId }) => {
-  const { id } = useParams;
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname();
   const { name } = useSelector((state) =>
     selectRestaurantById(state, restautantId)
   );
 
   const handleTabClick = () => {
-    navigate(`/restaurants/${restautantId}`);
+    router.push(`/restaurants/${restautantId}`);
   };
-  const disabled = restautantId === id;
+  const disabled = pathname === `/restaurants/${restautantId}`;
   return <Tab title={name} onClick={handleTabClick} disabled={disabled} />;
 };

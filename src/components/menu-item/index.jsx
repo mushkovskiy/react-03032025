@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 import { selectDishById } from "../../store/entites/dishes/slice";
-import { Link } from "react-router";
-
+import Link from "next/link";
 export const MenuItem = ({ id }) => {
   const { name } = useSelector((state) => selectDishById(state, id));
 
-  return <Link to={`/dish/${id}`}>{name}</Link>;
+  return <Link href={`/dish/${id}`}>{name}</Link>;
 };

@@ -6,13 +6,13 @@ import { AuthProvider } from "../providers/auth";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
-import { HomePage } from "../pages/home-page";
-import { RestaurantsPage } from "../pages/restaurants-page";
+import { HomePage } from "./pages/home-page";
+import { RestaurantsPage } from "./pages/restaurants-page";
 import { Restaurant } from "./restaurant";
 import { MenuList } from "./menu-list";
 import { ReviewList } from "./review-list";
-import { DishPage } from "../pages/dish-page";
-export const App = () => {
+import { DishPage } from "./pages/dish-page";
+const App = () => {
   return (
     <Provider store={store}>
       <AuthProvider>
@@ -38,3 +38,5 @@ export const App = () => {
     </Provider>
   );
 };
+
+export default App;
